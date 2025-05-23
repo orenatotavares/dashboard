@@ -50,7 +50,7 @@ with st.form("form_transacao", clear_on_submit=True):
     col1, col2, col3 = st.columns(3)
     data = col1.date_input("Data", get_current_brazil_date())
     tipo = col2.selectbox("Tipo", ["Depósito", "Saque"])
-    valor = col3.number_input("Valor (฿)", min_value=0, step=0, format="%.4f")
+    valor = col3.number_input("Valor (฿)", min_value=0, step=0, format="%.0f")
     
     # Botões do formulário
     col1, col2 = st.columns(2)
