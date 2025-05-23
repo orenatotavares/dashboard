@@ -110,7 +110,6 @@ if not df_transacoes.empty:
     
     # Exibir opções para apagar transações
     with col2:
-        st.subheader("Ações")
         for idx, row in df_exibicao.iterrows():
             if st.button(f"🗑️ Apagar", key=f"delete_{row['id']}"):
                 marcar_transacao_apagada(row['id'])
