@@ -24,7 +24,7 @@ init_database()
 load_dotenv()
 
 # Autenticação com senha
-senha_correta = os.getenv("SENHA_DASHBOARD", "senha123")  # Senha padrão para testes
+senha_correta = os.getenv("SENHA_DASHBOARD") 
 
 # Verificar autenticação
 if not check_authentication():
