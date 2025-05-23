@@ -129,7 +129,7 @@ def format_btc(value):
     """
     Formata um valor para exibição em Bitcoin.
     """
-    return f"฿ {value}".replace(",", ".")
+    return f"฿ {value:,}".replace(",", ".")
 
     
 
