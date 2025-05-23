@@ -65,8 +65,7 @@ if st.session_state.transacao_adicionada and valor > 0:
         st.success("Transação adicionada com sucesso!")
         # Resetar o estado para evitar duplicação
         st.session_state.transacao_adicionada = False
-        # Usar experimental_rerun para atualizar a página e mostrar a nova transação
-        st.experimental_rerun()
+
 
 # Obter transações do banco de dados
 df_transacoes = get_all_transactions()
