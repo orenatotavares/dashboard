@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 from datetime import date
 import sqlite3
+import sys
+import os
+
+# Adicionar o diretório raiz ao path para importar utils
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from utils import (
     check_authentication, 
     add_transaction, 
