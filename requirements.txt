@@ -5,4 +5,4 @@ plotly
 requests
 python-dotenv
 pytz
-sqlite3
+
