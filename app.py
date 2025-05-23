@@ -31,9 +31,7 @@ senha_correta = os.getenv("SENHA_DASHBOARD")
 if not check_authentication():
     st.title("🔒 Login")
     st.markdown("""
-    ### Bem-vindo ao Dashboard de Ordens
-    
-    Por favor, faça login para acessar o dashboard.
+    ### Bem-vindo ao Dashboard
     """)
     
     # Usar form para capturar o Enter automaticamente
@@ -44,7 +42,6 @@ if not check_authentication():
         if submit_button:
             if authenticate_user(senha_digitada, senha_correta):
                 st.success("Login realizado com sucesso!")
-                # Usar experimental_rerun apenas para o login
             else:
                 st.error("Senha incorreta. Tente novamente.")
     
