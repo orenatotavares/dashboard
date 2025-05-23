@@ -88,6 +88,7 @@ def get_all_transactions():
         df['Data'] = pd.to_datetime(df['data'])
         df = df.drop(columns=['data'])
         df = df.rename(columns={'tipo': 'Tipo', 'valor': 'Valor'})
+        df['Valor'] = int(df['Valor'])
     
     return df
 
