@@ -25,7 +25,7 @@ load_dotenv()
 
 # Autenticação com senha
 # Usar variável de ambiente ou senha padrão para implantação
-senha_correta = os.getenv("SENHA_DASHBOARD", "senha123")
+senha_correta = os.getenv("SENHA_DASHBOARD")
 
 # Verificar autenticação
 if not check_authentication():
@@ -45,7 +45,6 @@ if not check_authentication():
             if authenticate_user(senha_digitada, senha_correta):
                 st.success("Login realizado com sucesso!")
                 # Usar experimental_rerun apenas para o login
-                st.experimental_rerun()
             else:
                 st.error("Senha incorreta. Tente novamente.")
     
