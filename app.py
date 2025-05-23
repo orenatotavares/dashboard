@@ -34,7 +34,6 @@ if not check_authentication():
     if st.button("Entrar"):
         if authenticate_user(senha_digitada, senha_correta):
             st.success("Login realizado com sucesso!")
-            st.experimental_rerun()
         else:
             st.error("Senha incorreta. Tente novamente.")
     
