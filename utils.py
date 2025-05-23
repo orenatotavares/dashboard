@@ -5,6 +5,9 @@ import pandas as pd
 from datetime import datetime
 import pytz
 
+# Configuração do caminho do banco de dados
+DB_PATH = os.path.join(os.path.dirname(__file__), 'dashboard.db')
+
 # Função para verificar autenticação
 def check_authentication():
     """
@@ -30,7 +33,7 @@ def init_database():
     Inicializa o banco de dados SQLite para armazenar transações financeiras.
     Cria a tabela se não existir.
     """
-    conn = sqlite3.connect('dashboard.db')
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     
     # Criar tabela de transações se não existir
@@ -52,7 +55,7 @@ def add_transaction(data, tipo, valor):
     """
     Adiciona uma nova transação ao banco de dados.
     """
-    conn = sqlite3.connect('dashboard.db')
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -73,19 +76,35 @@ def get_all_transactions():
     Recupera todas as transações do banco de dados.
     Retorna um DataFrame pandas.
     """
-    conn = sqlite3.connect('dashboard.db')
+    conn = sqlite3.connect(DB_PATH)
     
-    query = "SELECT data, tipo, valor FROM transacoes ORDER BY data DESC"
+    query = "SELECT id, data, tipo, valor FROM transacoes ORDER BY data DESC"
     df = pd.read_sql_query(query, conn)
     
     conn.close()
     
     # Converter a coluna de data para o formato datetime
-    df['Data'] = pd.to_datetime(df['data'])
-    df = df.drop(columns=['data'])
-    df = df.rename(columns={'tipo': 'Tipo', 'valor': 'Valor'})
+    if not df.empty:
+        df['Data'] = pd.to_datetime(df['data'])
+        df = df.drop(columns=['data'])
+        df = df.rename(columns={'tipo': 'Tipo', 'valor': 'Valor'})
     
     return df
+
+# Função para apagar uma transação do banco de dados
+def delete_transaction(transaction_id):
+    """
+    Apaga uma transação do banco de dados pelo ID.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    cursor.execute("DELETE FROM transacoes WHERE id = ?", (transaction_id,))
+    
+    conn.commit()
+    conn.close()
+    
+    return True
 
 # Função para calcular o saldo total
 def calculate_balance():
