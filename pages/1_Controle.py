@@ -81,9 +81,9 @@ saldo_geral = saldo + lucro_total
 
 # Exibir métricas
 col1, col2, col3 = st.columns(3)
-col1.metric("💰 Saldo na plataforma", format_btc(saldo))
-col2.metric("📈 Lucro total operações", format_btc(lucro_total))
-col3.metric("📊 Saldo total com lucros", format_btc(saldo_geral))
+col1.metric("💰 Saldo", format_btc(saldo))
+col2.metric("📈 Lucro das Operações", format_btc(lucro_total))
+col3.metric("📊 Total com lucros", format_btc(saldo_geral))
 
 # Mostrar histórico
 st.subheader("📜 Histórico de transações")
@@ -115,7 +115,6 @@ if not df_transacoes.empty:
             if st.button(f"🗑️ Apagar", key=f"delete_{row['id']}"):
                 marcar_transacao_apagada(row['id'])
                 st.success(f"Transação de {row['Tipo']} no valor de {row['Valor_Exibicao']} apagada!")
-                # O experimental_rerun já está na função marcar_transacao_apagada
     
     # Adicionar botão para exportar dados
     csv = df_exibicao[['Data', 'Tipo', 'Valor_Exibicao']].rename(columns={'Valor_Exibicao': 'Valor'}).to_csv(index=False).encode('utf-8')
