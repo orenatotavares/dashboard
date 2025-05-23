@@ -129,7 +129,7 @@ def format_btc(value):
     """
     Formata um valor para exibição em Bitcoin.
     """
-    return f"฿ {value}"
+    return f"฿ {value:,.4f}"
 
 # Função para obter o fuso horário do Brasil
 def get_brazil_timezone():
