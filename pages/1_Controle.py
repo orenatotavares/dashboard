@@ -43,7 +43,7 @@ def marcar_transacao_adicionada():
 def marcar_transacao_apagada(transaction_id):
     if delete_transaction(transaction_id):
         st.session_state.transacao_apagada = True
-        st.experimental_rerun()  # Usar experimental_rerun para atualizar a página
+        
 
 # Formulário para nova transação
 with st.form("form_transacao", clear_on_submit=True):
