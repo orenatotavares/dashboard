@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -41,8 +40,7 @@ def generate_signature(timestamp, method, path, query_string, secret):
     signature = hmac.new(secret, message.encode(), hashlib.sha256).digest()
     return base64.b64encode(signature).decode()
 
-# Função para obter dados da API com cache
-@st.cache_data(show_spinner="Carregando dados da API...")
+# Função para obter dados da API
 def get_closed_positions():
     base_url = 'https://api.lnmarkets.com'
     path = '/v2/futures'
@@ -172,11 +170,11 @@ def formatar_tabela(df):
 # Carregamento e processamento dos dados
 if st.button("🔄 Atualizar dados"):
     st.session_state.df = get_closed_positions()
+    df = process_data(st.session_state.df)  # Processa os novos dados imediatamente
 
 if "df" not in st.session_state:
     st.session_state.df = get_closed_positions()
-
-df = process_data(st.session_state.df)
+    df = process_data(st.session_state.df)
 
 # Exibição
 if not df.empty:
