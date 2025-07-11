@@ -170,11 +170,12 @@ def formatar_tabela(df):
 # Carregamento e processamento dos dados
 if st.button("🔄 Atualizar dados"):
     st.session_state.df = get_closed_positions()
-    df = process_data(st.session_state.df)  # Processa os novos dados imediatamente
+    df = process_data(st.session_state.df)  # Garante que df seja atualizado após o clique
 
+# Inicialização ou uso do estado existente
 if "df" not in st.session_state:
     st.session_state.df = get_closed_positions()
-    df = process_data(st.session_state.df)
+df = process_data(st.session_state.df)  # Processa os dados após inicialização ou atualização
 
 # Exibição
 if not df.empty:
