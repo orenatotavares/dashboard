@@ -150,7 +150,7 @@ def formatar_tabela(df):
     styled_df = (
         df.style
         .format({
-            'Margem': '₿ {:,.0f}'.format,
+            'Margem': '฿ {:,.0f}'.format,
             'Preço de entrada': '$ {:,.1f}'.format,
             'Taxa': '₿ {:,.0f}'.format,
             'Lucro': '₿ {:,.0f}'.format,
