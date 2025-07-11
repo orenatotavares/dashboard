@@ -119,11 +119,11 @@ def create_monthly_chart(df):
         y='Lucro',
         text='Lucro',
         title='Lucro Mensal',
-        labels={'Lucro': 'Lucro (₿)', 'Mes': 'Mês'},
+        labels={'Lucro': 'Lucro (฿)', 'Mes': 'Mês'},
         color_discrete_sequence=['cornflowerblue']
     )
     fig.update_traces(texttemplate='₿%{text:,.0f}', textposition='outside')
-    fig.update_layout(yaxis_title='Lucro (₿)', xaxis_title='Mês', bargap=0.3)
+    fig.update_layout(yaxis_title='Lucro (฿)', xaxis_title='Mês', bargap=0.3)
     return fig, lucro_mensal['Mes'].tolist()
 
 # Função para criar gráfico diário
@@ -138,11 +138,11 @@ def create_daily_chart(df, mes_selecionado, lucro_mensal):
         y='Lucro',
         text='Lucro',
         title=f"Lucro Diário - {mes_selecionado}",
-        labels={'Lucro': 'Lucro (₿)', 'Saida': 'Dia'},
+        labels={'Lucro': 'Lucro (฿)', 'Saida': 'Dia'},
         color_discrete_sequence=['mediumseagreen']
     )
-    fig.update_traces(texttemplate='₿%{text:,.0f}', textposition='outside')
-    fig.update_layout(yaxis_title='Lucro (₿)', xaxis_title='Dia', bargap=0.3)
+    fig.update_traces(texttemplate='฿%{text:,.0f}', textposition='outside')
+    fig.update_layout(yaxis_title='Lucro (฿)', xaxis_title='Dia', bargap=0.3)
     return fig
 
 # Função para formatar a tabela
@@ -152,8 +152,8 @@ def formatar_tabela(df):
         .format({
             'Margem': '฿ {:,.0f}'.format,
             'Preço de entrada': '$ {:,.1f}'.format,
-            'Taxa': '₿ {:,.0f}'.format,
-            'Lucro': '₿ {:,.0f}'.format,
+            'Taxa': '฿ {:,.0f}'.format,
+            'Lucro': '฿ {:,.0f}'.format,
             'ROI': '{:.2f}%'.format
         })
         .set_properties(**{
@@ -192,7 +192,7 @@ if not df.empty:
     lucro_dia = df_hoje['Lucro'].sum()
 
     col1, col2, col3, col4, col5 = st.columns(5)
-    col1.metric("💰 Total Investido", f"฿ {int(total_investido):,}".replace(",", "."))
+    col1.metric("💰 Total Investido", f"₿ {int(total_investido):,}".replace(",", "."))
     col2.metric("📈 Lucro Total", f"₿ {int(lucro_total):,}".replace(",", "."))
     col3.metric("📊 ROI Total", f"{roi_total:.2f}%")
     col4.metric("📋 Total de Ordens", num_ordens)
