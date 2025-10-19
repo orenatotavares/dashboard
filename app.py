@@ -42,7 +42,7 @@ def generate_signature(timestamp, method, path, query_string, secret):
 
 # Função para obter dados da API
 def get_closed_positions():
-    base_url = 'https://api.testnet4.lnmarkets.com'
+    base_url = 'https://api.lnmarkets.com'
     path = '/v2/futures'
     method = 'GET'
     params = {'type': 'closed', 'limit': 1000}
